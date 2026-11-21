@@ -1,0 +1,242 @@
+{
+  "sourceFile": "data/sample_access.log",
+  "generatedAt": "2026-11-21T10:27:28.941718400Z",
+  "totalRawLines": 218,
+  "parsedLogs": 216,
+  "malformedLines": 2,
+  "uniqueIps": 12,
+  "totalAlerts": 8,
+  "criticalAlerts": 4,
+  "highAlerts": 3,
+  "mediumAlerts": 1,
+  "alerts": [
+    {
+      "alertType": "DDoS / Traffic Flood",
+      "severity": "CRITICAL",
+      "ip": "203.0.113.77",
+      "eventCount": 46,
+      "firstSeen": "2026-11-21 14:39:00",
+      "lastSeen": "2026-11-21 14:39:45",
+      "details": "46 req/min burst (z-score=8.68)"
+    },
+    {
+      "alertType": "Brute-Force / Auth Abuse",
+      "severity": "CRITICAL",
+      "ip": "185.220.101.44",
+      "eventCount": 18,
+      "firstSeen": "2026-11-21 14:33:00",
+      "lastSeen": "2026-11-21 14:34:08",
+      "details": "18 failed auth attempts (401/403) in 5m targeting /api/login"
+    },
+    {
+      "alertType": "SQL Injection Attempt",
+      "severity": "CRITICAL",
+      "ip": "45.155.205.91",
+      "eventCount": 4,
+      "firstSeen": "2026-11-21 14:35:00",
+      "lastSeen": "2026-11-21 14:35:30",
+      "details": "Matched signature on payload: /api/users?id=1%20OR%201=1"
+    },
+    {
+      "alertType": "Path Traversal Attempt",
+      "severity": "CRITICAL",
+      "ip": "45.155.205.91",
+      "eventCount": 3,
+      "firstSeen": "2026-11-21 14:36:00",
+      "lastSeen": "2026-11-21 14:36:24",
+      "details": "Matched signature on payload: /download?file=../../../../etc/passwd"
+    },
+    {
+      "alertType": "DDoS / Traffic Flood",
+      "severity": "HIGH",
+      "ip": "185.220.101.44",
+      "eventCount": 15,
+      "firstSeen": "2026-11-21 14:33:00",
+      "lastSeen": "2026-11-21 14:33:56",
+      "details": "15 req/min burst (z-score=2.51)"
+    },
+    {
+      "alertType": "Brute-Force / Auth Abuse",
+      "severity": "HIGH",
+      "ip": "91.240.118.172",
+      "eventCount": 8,
+      "firstSeen": "2026-11-21 14:37:00",
+      "lastSeen": "2026-11-21 14:37:42",
+      "details": "8 failed auth attempts (401/403) in 5m targeting /admin/login"
+    },
+    {
+      "alertType": "Cross-Site Scripting (XSS)",
+      "severity": "HIGH",
+      "ip": "103.145.12.88",
+      "eventCount": 3,
+      "firstSeen": "2026-11-21 14:38:00",
+      "lastSeen": "2026-11-21 14:38:18",
+      "details": "Matched signature on payload: /search?q=<script>alert(1)</script>"
+    },
+    {
+      "alertType": "Directory / Recon Scan",
+      "severity": "MEDIUM",
+      "ip": "198.51.100.23",
+      "eventCount": 14,
+      "firstSeen": "2026-11-21 14:41:00",
+      "lastSeen": "2026-11-21 14:41:39",
+      "details": "14 HTTP 404 errors across 14 distinct paths in 5m"
+    }
+  ],
+  "topRiskyIps": [
+    {
+      "ip": "45.155.205.91",
+      "totalRequests": 7,
+      "errorRequests": 7,
+      "totalBytes": 1888,
+      "alertCount": 2,
+      "riskScore": 80,
+      "riskLevel": "CRITICAL",
+      "attackTypes": "SQL Injection Attempt, Path Traversal Attempt"
+    },
+    {
+      "ip": "185.220.101.44",
+      "totalRequests": 18,
+      "errorRequests": 18,
+      "totalBytes": 5616,
+      "alertCount": 2,
+      "riskScore": 65,
+      "riskLevel": "HIGH",
+      "attackTypes": "Brute-Force / Auth Abuse, DDoS / Traffic Flood"
+    },
+    {
+      "ip": "203.0.113.77",
+      "totalRequests": 46,
+      "errorRequests": 20,
+      "totalBytes": 8464,
+      "alertCount": 1,
+      "riskScore": 40,
+      "riskLevel": "HIGH",
+      "attackTypes": "DDoS / Traffic Flood"
+    },
+    {
+      "ip": "91.240.118.172",
+      "totalRequests": 8,
+      "errorRequests": 8,
+      "totalBytes": 2384,
+      "alertCount": 1,
+      "riskScore": 25,
+      "riskLevel": "MEDIUM",
+      "attackTypes": "Brute-Force / Auth Abuse"
+    },
+    {
+      "ip": "103.145.12.88",
+      "totalRequests": 3,
+      "errorRequests": 0,
+      "totalBytes": 3720,
+      "alertCount": 1,
+      "riskScore": 25,
+      "riskLevel": "MEDIUM",
+      "attackTypes": "Cross-Site Scripting (XSS)"
+    },
+    {
+      "ip": "198.51.100.23",
+      "totalRequests": 14,
+      "errorRequests": 14,
+      "totalBytes": 2926,
+      "alertCount": 1,
+      "riskScore": 12,
+      "riskLevel": "LOW",
+      "attackTypes": "Directory / Recon Scan"
+    },
+    {
+      "ip": "192.168.10.5",
+      "totalRequests": 20,
+      "errorRequests": 0,
+      "totalBytes": 105080,
+      "alertCount": 0,
+      "riskScore": 0,
+      "riskLevel": "LOW",
+      "attackTypes": "None"
+    },
+    {
+      "ip": "10.0.1.12",
+      "totalRequests": 20,
+      "errorRequests": 0,
+      "totalBytes": 90380,
+      "alertCount": 0,
+      "riskScore": 0,
+      "riskLevel": "LOW",
+      "attackTypes": "None"
+    },
+    {
+      "ip": "10.0.2.18",
+      "totalRequests": 20,
+      "errorRequests": 0,
+      "totalBytes": 92400,
+      "alertCount": 0,
+      "riskScore": 0,
+      "riskLevel": "LOW",
+      "attackTypes": "None"
+    },
+    {
+      "ip": "172.16.0.14",
+      "totalRequests": 20,
+      "errorRequests": 0,
+      "totalBytes": 98740,
+      "alertCount": 0,
+      "riskScore": 0,
+      "riskLevel": "LOW",
+      "attackTypes": "None"
+    },
+    {
+      "ip": "10.0.1.24",
+      "totalRequests": 20,
+      "errorRequests": 0,
+      "totalBytes": 96720,
+      "alertCount": 0,
+      "riskScore": 0,
+      "riskLevel": "LOW",
+      "attackTypes": "None"
+    },
+    {
+      "ip": "10.0.1.35",
+      "totalRequests": 20,
+      "errorRequests": 0,
+      "totalBytes": 103060,
+      "alertCount": 0,
+      "riskScore": 0,
+      "riskLevel": "LOW",
+      "attackTypes": "None"
+    }
+  ],
+  "timeline": [
+    { "minuteBucket": "14:30", "totalRequests": 9, "errorRequests": 0 },
+    { "minuteBucket": "14:31", "totalRequests": 9, "errorRequests": 0 },
+    { "minuteBucket": "14:32", "totalRequests": 8, "errorRequests": 0 },
+    { "minuteBucket": "14:33", "totalRequests": 24, "errorRequests": 15 },
+    { "minuteBucket": "14:34", "totalRequests": 11, "errorRequests": 3 },
+    { "minuteBucket": "14:35", "totalRequests": 13, "errorRequests": 4 },
+    { "minuteBucket": "14:36", "totalRequests": 11, "errorRequests": 3 },
+    { "minuteBucket": "14:37", "totalRequests": 17, "errorRequests": 8 },
+    { "minuteBucket": "14:38", "totalRequests": 12, "errorRequests": 0 },
+    { "minuteBucket": "14:39", "totalRequests": 54, "errorRequests": 20 },
+    { "minuteBucket": "14:40", "totalRequests": 9, "errorRequests": 0 },
+    { "minuteBucket": "14:41", "totalRequests": 22, "errorRequests": 14 },
+    { "minuteBucket": "14:42", "totalRequests": 9, "errorRequests": 0 },
+    { "minuteBucket": "14:43", "totalRequests": 8, "errorRequests": 0 }
+  ],
+  "statusBreakdown": [
+    { "statusGroup": "2xx Success", "count": 142 },
+    { "statusGroup": "3xx Redirect", "count": 7 },
+    { "statusGroup": "4xx Client Error", "count": 47 },
+    { "statusGroup": "5xx Server Error", "count": 20 }
+  ],
+  "topEndpoints": [
+    { "endpoint": "/api/products", "hits": 60, "errorHits": 20 },
+    { "endpoint": "/api/login", "hits": 18, "errorHits": 18 },
+    { "endpoint": "/index.html", "hits": 14, "errorHits": 0 },
+    { "endpoint": "/", "hits": 14, "errorHits": 0 },
+    { "endpoint": "/assets/app.js", "hits": 13, "errorHits": 0 },
+    { "endpoint": "/api/health", "hits": 13, "errorHits": 0 },
+    { "endpoint": "/api/profile", "hits": 13, "errorHits": 0 },
+    { "endpoint": "/about", "hits": 13, "errorHits": 0 },
+    { "endpoint": "/docs", "hits": 13, "errorHits": 0 },
+    { "endpoint": "/dashboard", "hits": 13, "errorHits": 0 }
+  ]
+}

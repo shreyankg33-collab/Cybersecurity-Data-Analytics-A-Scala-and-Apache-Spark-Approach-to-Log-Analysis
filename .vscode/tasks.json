@@ -1,0 +1,34 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Spark Log Analyzer (sbt run)",
+      "type": "shell",
+      "command": "sbt \"runMain com.cybersec.Main data/sample_access.log\"",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Generate Large Synthetic Dataset (10,000 logs)",
+      "type": "shell",
+      "command": "sbt \"runMain com.cybersec.generator.LogGenerator data/large_access.log 10000\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Spark Analyzer on Large Dataset",
+      "type": "shell",
+      "command": "sbt \"runMain com.cybersec.Main data/large_access.log\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Start SIEM Dashboard (http://localhost:8000)",
+      "type": "shell",
+      "command": "java ServeDashboard.java",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberSec Spark SIEM — Scala &amp; Apache Spark Log Analytics</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>CyberSec Spark SIEM</h1>
+      <p class="subtitle">Cybersecurity Data Analytics &bull; Scala &amp; Apache Spark Log Analysis</p>
+    </div>
+    <div class="topbar-actions">
+      <span id="metaInfo" class="meta-pill">Waiting for Spark report...</span>
+      <label class="upload-btn">
+        Load report.json
+        <input type="file" id="jsonFileInput" accept=".json" hidden />
+      </label>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="emptyBanner" class="banner hidden">
+      <strong>No Spark report loaded yet.</strong> Run <code>sbt run</code> in VS Code to generate
+      <code>dashboard/data/report.json</code>, then refresh (via VS Code Live Server) or click
+      <strong>Load report.json</strong> above.
+    </div>
+
+    <!-- KPI Cards -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <span class="kpi-label">Parsed Logs</span>
+        <span id="kpiParsed" class="kpi-value">--</span>
+        <span id="kpiMalformed" class="kpi-sub">Malformed: --</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Unique Source IPs</span>
+        <span id="kpiIps" class="kpi-value">--</span>
+        <span class="kpi-sub">Analyzed by Spark SQL</span>
+      </div>
+      <div class="kpi-card danger">
+        <span class="kpi-label">Critical Alerts</span>
+        <span id="kpiCritical" class="kpi-value">--</span>
+        <span id="kpiTotalAlerts" class="kpi-sub">Total Alerts: --</span>
+      </div>
+      <div class="kpi-card warn">
+        <span class="kpi-label">High / Medium Alerts</span>
+        <span id="kpiHighMed" class="kpi-value">--</span>
+        <span class="kpi-sub">Window &amp; Signature Rules</span>
+      </div>
+    </section>
+
+    <!-- Charts -->
+    <section class="chart-grid">
+      <div class="card wide">
+        <h2>Traffic &amp; Error Timeline (Per Minute)</h2>
+        <div class="chart-wrap">
+          <canvas id="timelineChart"></canvas>
+        </div>
+      </div>
+      <div class="card">
+        <h2>HTTP Status Breakdown</h2>
+        <div class="chart-wrap">
+          <canvas id="statusChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alerts Feed -->
+    <section class="card">
+      <div class="card-header">
+        <h2>Detected Threat Alerts</h2>
+        <div class="filters">
+          <select id="severityFilter">
+            <option value="ALL">All Severities</option>
+            <option value="CRITICAL">CRITICAL</option>
+            <option value="HIGH">HIGH</option>
+            <option value="MEDIUM">MEDIUM</option>
+          </select>
+          <input type="text" id="searchInput" placeholder="Filter by IP, attack type, or details..." />
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Severity</th>
+              <th>Threat Type</th>
+              <th>Source IP</th>
+              <th>Events</th>
+              <th>Time Window (UTC)</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody id="alertsTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Bottom Grid: Risky IPs + Top Endpoints -->
+    <section class="bottom-grid">
+      <div class="card">
+        <h2>Top Risky IP Profiles</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>IP Address</th>
+                <th>Risk Score</th>
+                <th>Requests</th>
+                <th>Errors</th>
+                <th>Detected Attacks</th>
+              </tr>
+            </thead>
+            <tbody id="riskyIpsBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Top Targeted Endpoints</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Endpoint</th>
+                <th>Total Hits</th>
+                <th>Error Hits</th>
+              </tr>
+            </thead>
+            <tbody id="endpointsBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
