@@ -28,6 +28,9 @@ jobs:
           java-version: "17"
           cache: sbt
 
+      - name: Setup sbt
+        uses: sbt/setup-sbt@v1
+
       - name: Run Scala + Apache Spark Log Analyzer
         run: sbt "runMain com.cybersec.Main data/sample_access.log dashboard/data/report.json output/threat_alerts.csv"
 
